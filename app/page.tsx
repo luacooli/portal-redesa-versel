@@ -5,9 +5,9 @@ import { allPosts } from 'contentlayer/generated'
 export default function HomePage() {
   return (
     <main className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">
-        Rede Entre Serras e Águas
-      </h1>
+      <div className="flex justify-center mb-6">
+        <img src="/images/logo/REDESA.png" alt="Mapa das 13 cidades" width={500} />
+      </div>
 
       <CityNavbar />
 

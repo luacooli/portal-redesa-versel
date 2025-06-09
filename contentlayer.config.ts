@@ -15,8 +15,22 @@ const Post = defineDocumentType(() => ({
       description: 'The date of the post',
       required: true,
     },
-    city: { type: 'string', required: true },
-    topic: { type: 'string', required: true },
+    city: {
+      type: 'string',
+      description: 'It is where the news come from',
+      required: true,
+    },
+    topic: { type: 'string', description: 'Topic of the news', required: true },
+    description: {
+      type: 'string',
+      description: 'small descriptions about the news',
+      required: true,
+    },
+    image: {
+      type: 'string',
+      description: 'Image of the news',
+      required: false,
+    },
   },
   computedFields: {
     url: {
@@ -29,16 +43,12 @@ const Post = defineDocumentType(() => ({
     },
     slug: {
       type: 'string',
-      resolve: (doc) =>
-        doc._raw.sourceFileName
-          .replace(/\.md$/, '')
-          .toLowerCase()
-          .replace(/\s+/g, '-'),
+      resolve: (post) => post._raw.sourceFileName.replace(/\.mdx?$/, ''),
     },
   },
 }))
 
 export default makeSource({
-  contentDirPath: 'posts',
+  contentDirPath: 'content',
   documentTypes: [Post],
 })

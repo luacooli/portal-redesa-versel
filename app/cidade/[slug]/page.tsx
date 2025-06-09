@@ -19,21 +19,28 @@ export default function CityPage({
   )
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4 capitalize">
-        Notícias de {city}
+    <main className="max-w-6xl mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-6 capitalize text-center">
+        {city} News
       </h1>
 
-      <TopicFilter citySlug={params.slug} activeTopic={topic} />
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Sidebar de tópicos */}
+        <aside className="md:w-1/4">
+          <TopicFilter citySlug={params.slug} activeTopic={topic} />
+        </aside>
 
-      <section className="mt-6 space-y-6">
-        {posts.map(post => (
-          <PostCard key={post._id} post={post} />
-        ))}
-        {posts.length === 0 && (
-          <p className="text-gray-500">No articles found.</p>
-        )}
-      </section>
+        {/* Área de posts */}
+        <section className="md:w-3/4 space-y-6">
+          {posts.length > 0 ? (
+            posts.map(post => (
+              <PostCard key={post._id} post={post} />
+            ))
+          ) : (
+            <p className="text-gray-500">Nenhum artigo encontrado.</p>
+          )}
+        </section>
+      </div>
     </main>
   )
 }
