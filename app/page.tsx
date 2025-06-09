@@ -1,43 +1,21 @@
-import Link from "next/link";
-import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts, Post } from "contentlayer/generated";
-import { getMDXComponent } from "next-contentlayer/hooks";
+import CityNavbar from '@/components/CityNavbar'
+import PostCard from '@/components/PostCard'
+import { allPosts } from 'contentlayer/generated'
 
-function PostCard(post: Post) {
-  const Content = getMDXComponent(post.body.code);
-
+export default function HomePage() {
   return (
-    <div className="mb-8">
-      <h2 className="text-xl">
-        <Link
-          href={post.url}
-          className="text-blue-700 hover:text-blue-900"
-          legacyBehavior>
-          {post.title}
-        </Link>
-      </h2>
-      <time dateTime={post.date} className="block mb-2 text-xs text-gray-600">
-        {format(parseISO(post.date), "LLLL d, yyyy")}
-      </time>
-      <div className="text-sm">
-        <Content />
-      </div>
-    </div>
-  );
-}
+    <main className="max-w-4xl mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-center mb-8">
+        Rede Entre Serras e Águas
+      </h1>
 
-export default function Home() {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  );
+      <CityNavbar />
 
-  return (
-    <div className="max-w-xl py-8 mx-auto">
-      <h1 className="mb-8 text-3xl font-bold text-center">Next.js Example</h1>
-
-      {posts.map((post, idx) => (
-        <PostCard key={idx} {...post} />
-      ))}
-    </div>
-  );
+      <section className="mt-8 space-y-6">
+        {allPosts.map(post => (
+          <PostCard key={post._id} post={post} />
+        ))}
+      </section>
+    </main>
+  )
 }
