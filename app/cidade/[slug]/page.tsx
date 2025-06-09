@@ -21,7 +21,7 @@ export default function CityPage({
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6 capitalize text-center">
-        {city} News
+        Notícias {city} 
       </h1>
 
       <div className="flex flex-col md:flex-row gap-8">

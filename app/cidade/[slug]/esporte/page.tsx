@@ -21,7 +21,7 @@ export default function CityPage({
   return (
     <main className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4 capitalize">
-        {city} News
+        Notícias {city}
       </h1>
 
       <TopicFilter citySlug={params.slug} activeTopic={topic} />
