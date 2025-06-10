@@ -1,4 +1,6 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import { cities } from './lib/constants/cities'
+import slugify from 'slugify'
 
 const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -16,11 +18,16 @@ const Post = defineDocumentType(() => ({
       required: true,
     },
     city: {
+      type: 'enum',
+      options: cities.map((c) => c.name),
+      required: true,
+      description: 'Deve ser uma das 13 cidades da rede',
+    },
+    topic: {
       type: 'string',
-      description: 'It is where the news come from',
+      description: 'Category of the news',
       required: true,
     },
-    topic: { type: 'string', description: 'Topic of the news', required: true },
     description: {
       type: 'string',
       description: 'small descriptions about the news',
@@ -30,6 +37,18 @@ const Post = defineDocumentType(() => ({
       type: 'string',
       description: 'Image of the news',
       required: false,
+    },
+    slug: {
+      type: 'string',
+      resolve: (post) => slugify(post.title),
+    },
+    citySlug: {
+      type: 'string',
+      resolve: (post) => slugify(post.city),
+    },
+    topicSlug: {
+      type: 'string',
+      resolve: (post) => slugify(post.topic),
     },
   },
   computedFields: {
