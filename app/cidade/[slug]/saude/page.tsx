@@ -12,14 +12,14 @@ export default function CulturaPage({
     .filter(
       post =>
         post.city?.toLowerCase() === city.toLowerCase() &&
-        post.topic === 'entretenimento'
+        post.topic === 'saude'
     )
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-10">
       <h1 className="text-3xl font-bold mb-8 capitalize">
-        Esportes de {city}
+        Saúde em {city}
       </h1>
 
       {posts.length === 0 ? (
