@@ -3,6 +3,10 @@ import PostCard from '@/components/PostCard'
 import { allPosts } from 'contentlayer/generated'
 
 export default function HomePage() {
+  const sortedPosts = allPosts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  )
+
   return (
     <main className="max-w-4xl mx-auto px-4 py-8">
       <div className="flex justify-center mb-6">
@@ -12,7 +16,7 @@ export default function HomePage() {
       <CityNavbar />
 
       <section className="mt-8 space-y-6">
-        {allPosts.map(post => (
+        {sortedPosts.map(post => (
           <PostCard key={post._id} post={post} />
         ))}
       </section>

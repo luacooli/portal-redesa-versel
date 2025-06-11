@@ -1,5 +1,5 @@
 import { allPosts } from 'contentlayer/generated'
-import TopicFilter from '@/components/TopicFilter'
+// import TopicFilter from '@/components/TopicFilter'
 import PostCard from '@/components/PostCard'
 
 export default function CityPage({
@@ -21,10 +21,10 @@ export default function CityPage({
   return (
     <main className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4 capitalize">
-        Notícias {city}
+        Notícias Cutural - {city}
       </h1>
 
-      <TopicFilter citySlug={params.slug} activeTopic={topic} />
+      {/* <TopicFilter citySlug={params.slug} activeTopic={topic} /> */}
 
       <section className="mt-6 space-y-6">
         {posts.map(post => (

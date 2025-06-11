@@ -2,22 +2,16 @@ import { Post } from 'contentlayer/generated'
 import Link from 'next/link'
 import { parseISO, format } from 'date-fns'
 
-type PostCardProps = {
-  post: {
-    title: string
-    city: string
-    slug: string
-    topic?: string
-  }
-}
-
 export default function PostCard({ post }: { post: Post }) {
   const excerpt = post.body.raw.substring(0, 200) + '...'
 
   return (
     <article>
       <h2 className="text-xl font-semibold mb-1">
-        <Link href={`/cidade/${post.citySlug}/${post.topicSlug}/${post.slug}`} className="text-blue-700 hover:underline">
+        <Link
+          href={`/cidade/${post.citySlug}/${post.topicSlug}/${post.slug}`}
+          className="text-blue-700 hover:underline"
+        >
           {post.title}
         </Link>
       </h2>

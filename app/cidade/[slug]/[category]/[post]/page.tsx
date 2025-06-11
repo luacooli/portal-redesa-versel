@@ -1,23 +1,41 @@
-// app/cidade/[slug]/[category]/[post]/page.tsx
 import { allPosts } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
+import { useMDXComponent } from 'next-contentlayer/hooks'
 
-export default function PostPage({ params }: { params: { slug: string, category: string, post: string } }) {
-  const { slug: citySlug, category, post: postSlug } = params
-
+export default function PostPage({
+  params
+}: {
+  params: { slug: string; category: string; post: string }
+}) {
   const post = allPosts.find(
     p =>
-      p._raw.flattenedPath === `posts/${postSlug}` &&
-      p.city?.toLowerCase().replace(/\s+/g, '-') === citySlug &&
-      p.topic?.toLowerCase().replace(/\s+/g, '-') === category
+      p.citySlug === params.slug &&
+      p.topicSlug === params.category &&
+      p.slug === params.post
   )
 
   if (!post) return notFound()
 
+  const MDXContent = useMDXComponent(post.body.code)
+
   return (
-    <article className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
+    <article>
+      <h1>{post.title}</h1>
+      {post.image && <img src={post.image} alt={post.title} />}
+      <p>{post.description}</p>
       {/* <div dangerouslySetInnerHTML={{ __html: post.body.html }} /> */}
+      <MDXContent />
+
+      {post.youtubeUrl && (
+        <iframe
+          width="560"
+          height="315"
+          src={`https://www.youtube.com/embed/${post.youtubeUrl.split('v=')[1]}`}
+          title="YouTube video player"
+          allowFullScreen
+          className="w-full h-64 mt-4"
+        />
+      )}
     </article>
   )
 }

@@ -12,23 +12,17 @@ export default function CityPage({
   const city = params.slug.replace(/-/g, ' ')
   const topic = searchParams.topic
 
-  const posts = allPosts.filter(
-    post =>
-      post.city?.toLowerCase() === city.toLowerCase() &&
-      (!topic || post.topic === topic)
-  )
+  const posts = allPosts
+    .filter(post => post.citySlug === params.slug)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 capitalize text-center">
-        Notícias {city} 
+      <h1 className="text-2xl font-bold mb-6 text-center">
+        Notícias de {city}
       </h1>
 
       <div className="flex flex-col md:flex-row gap-8">
-        {/* Sidebar de tópicos */}
-        <aside className="md:w-1/4">
-          <TopicFilter citySlug={params.slug} activeTopic={topic} />
-        </aside>
 
         {/* Área de posts */}
         <section className="md:w-3/4 space-y-6">

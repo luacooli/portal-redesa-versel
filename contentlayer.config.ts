@@ -38,18 +38,7 @@ const Post = defineDocumentType(() => ({
       description: 'Image of the news',
       required: false,
     },
-    slug: {
-      type: 'string',
-      resolve: (post) => slugify(post.title),
-    },
-    citySlug: {
-      type: 'string',
-      resolve: (post) => slugify(post.city),
-    },
-    topicSlug: {
-      type: 'string',
-      resolve: (post) => slugify(post.topic),
-    },
+    youtubeUrl: { type: 'string', required: false },
   },
   computedFields: {
     url: {
@@ -62,7 +51,27 @@ const Post = defineDocumentType(() => ({
     },
     slug: {
       type: 'string',
-      resolve: (post) => post._raw.sourceFileName.replace(/\.mdx?$/, ''),
+      resolve: (post) =>
+        post.title
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]+/g, ''),
+    },
+    citySlug: {
+      type: 'string',
+      resolve: (post) =>
+        post.city
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]+/g, ''),
+    },
+    topicSlug: {
+      type: 'string',
+      resolve: (post) =>
+        post.topic
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]+/g, ''),
     },
   },
 }))
