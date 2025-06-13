@@ -1,8 +1,7 @@
 import { allPosts } from 'contentlayer/generated'
-import TopicFilter from '@/components/TopicFilter'
 import PostCard from '@/components/PostCard'
 
-export default function CityPage({
+export default async function CityPage({
   params,
   searchParams
 }: {
@@ -17,14 +16,14 @@ export default function CityPage({
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-center">
+    <main className="max-w-6xl py-8">
+      <h2 className="text-2xl font-bold mb-6 capitalize">
         Notícias de {city}
-      </h1>
+      </h2>
 
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row gap-8 space-y-2">
 
-        {/* Área de posts */}
+        {/* Coluna direita - Posts */}
         <section className="md:w-3/4 space-y-6">
           {posts.length > 0 ? (
             posts.map(post => (

@@ -10,19 +10,19 @@ export default function HomePage() {
   )
 
   return (
-    <main className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-6">
-      <aside className="lg:col-span-1">
+    <main className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
+      {/* <aside className="lg:col-span-1">
         <h2 className="font-semibold text-lg mb-4">Previsão do Tempo</h2>
-        <WeatherWidget />
-      </aside>
+        <WeatherWidget city={'Atibaia'} />
+      </aside> */}
 
       <section className="lg:col-span-3">
         <CityNavbar />
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center my-6">
           <img src="/images/logo/REDESA.png" alt="Mapa das 13 cidades" width={500} />
         </div>
 
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
           {sortedPosts.map(post => (
             <PostCard key={post._id} post={post} showImg={false} />
           ))}

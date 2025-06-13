@@ -12,7 +12,7 @@ export default function CategoryPage({
 
   return (
     <div>
-      <h1>{params.category} em {params.slug}</h1>
+      <h2>{params.category} em {params.slug}</h2>
       {posts.map(post => (
         <Link key={post.slug} href={`/cidade/${post.citySlug}/${post.topicSlug}/${post.slug}`}>
           {post.title}

@@ -9,6 +9,8 @@ type Post = {
   date: string
   summary?: string
   image?: string
+  citySlug: string
+  topicSlug: string
 }
 
 export default function PostCard({
@@ -23,28 +25,30 @@ export default function PostCard({
   })
 
   return (
-    <Link href={`/materia/${post.slug}`}>
-      <article className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100">
-        {post.image && showImg && (
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-48 object-cover"
-          />
-        )}
-
-        <div className="p-4 space-y-2">
-          <h2 className="text-lg font-semibold text-gray-800 line-clamp-2">
-            {post.title}
-          </h2>
-
-          <p className="text-sm text-gray-500">{formattedDate}</p>
-
-          {post.summary && (
-            <p className="text-sm text-gray-600 line-clamp-3">{post.summary}</p>
+    <div>
+      <Link href={`/cidade/${post.citySlug}/${post.topicSlug}/${post.slug}`}>
+        <article className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100">
+          {post.image && showImg && (
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-48 object-cover"
+            />
           )}
-        </div>
-      </article>
-    </Link>
+
+          <div className="p-4 space-y-2">
+            <h2 className="text-lg font-semibold text-gray-800 line-clamp-2">
+              {post.title}
+            </h2>
+
+            <p className="text-sm text-gray-500">{formattedDate}</p>
+
+            {post.summary && (
+              <p className="text-sm text-gray-600 line-clamp-3">{post.summary}</p>
+            )}
+          </div>
+        </article>
+      </Link>
+    </div>
   )
 }

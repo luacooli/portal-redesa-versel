@@ -1,36 +1,36 @@
 import { allPosts } from 'contentlayer/generated'
 import PostCard from '@/components/PostCard'
 
-export default function CulturaPage({
-  params
+export default function CityPage({
+  params,
+  searchParams
 }: {
   params: { slug: string }
+  searchParams: { topic?: string }
 }) {
   const city = params.slug.replace(/-/g, ' ')
+  const topic = searchParams.topic
 
-  const posts = allPosts
-    .filter(
-      post =>
-        post.city?.toLowerCase() === city.toLowerCase() &&
-        post.topic === 'saude'
-    )
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const posts = allPosts.filter(
+    post =>
+      post.city?.toLowerCase() === city.toLowerCase() &&
+      post.topicSlug === 'saude'
+  )
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-10">
-      <h1 className="text-3xl font-bold mb-8 capitalize">
+    <main className="max-w-4xl mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-4 capitalize">
         Saúde em {city}
       </h1>
 
-      {posts.length === 0 ? (
-        <p className="text-gray-500 text-lg">Nenhuma matéria de esporte encontrada.</p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map(post => (
-            <PostCard key={post._id} post={post} />
-          ))}
-        </div>
-      )}
+      <section className="mt-6 space-y-6">
+        {posts.map(post => (
+          <PostCard key={post._id} post={post} />
+        ))}
+        {posts.length === 0 && (
+          <p className="text-gray-500">No articles found.</p>
+        )}
+      </section>
     </main>
   )
 }

@@ -15,16 +15,14 @@ export default function CityPage({
   const posts = allPosts.filter(
     post =>
       post.city?.toLowerCase() === city.toLowerCase() &&
-      (!topic || post.topic === topic)
+      post.topicSlug === 'entretenimento'
   )
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4 capitalize">
-        Entretenimento - {city}
+        Entretenimento em {city}
       </h1>
-
-      {/* <TopicFilter citySlug={params.slug} activeTopic={topic} /> */}
 
       <section className="mt-6 space-y-6">
         {posts.map(post => (

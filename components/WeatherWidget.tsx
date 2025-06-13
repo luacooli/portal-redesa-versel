@@ -10,17 +10,19 @@ type WeatherData = {
   wind: number
 }
 
-export default function WeatherWidget() {
+export default function WeatherWidget({ city }: { city: string }) {
   const [weather, setWeather] = useState<WeatherData | null>(null)
   const [loading, setLoading] = useState(true)
-  const apiKey = process.env.OPENWEATHER_KEY
+  const apiKey = process.env.NEXT_PUBLIC_OPENWEATHER_KEY
 
   useEffect(() => {
     async function fetchWeather() {
+      if (!city) return
+
       try {
-        // const apiKey = '4f8bc566a4f5afc7b26071cccb16ccec'
-        const city = 'Atibaia'
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+          city
+        )}&appid=${apiKey}&units=metric&lang=pt_br`
 
         const res = await fetch(url)
         const data = await res.json()
@@ -47,7 +49,7 @@ export default function WeatherWidget() {
     }
 
     fetchWeather()
-  }, [])
+  }, [city])
 
   if (loading) return <p>Carregando clima...</p>
   if (!weather) return <p>Clima não disponível</p>

@@ -15,7 +15,7 @@ export default function CityPage({
   const posts = allPosts.filter(
     post =>
       post.city?.toLowerCase() === city.toLowerCase() &&
-      (!topic || post.topic === topic)
+      post.topicSlug === 'cultura'
   )
 
   return (
