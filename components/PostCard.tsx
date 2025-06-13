@@ -11,7 +11,13 @@ type Post = {
   image?: string
 }
 
-export default function PostCard({ post }: { post: Post }) {
+export default function PostCard({
+  post,
+  showImg = true
+}: {
+  post: Post
+  showImg?: boolean
+}) {
   const formattedDate = format(new Date(post.date), "dd 'de' MMMM 'de' yyyy", {
     locale: ptBR
   })
@@ -19,7 +25,7 @@ export default function PostCard({ post }: { post: Post }) {
   return (
     <Link href={`/materia/${post.slug}`}>
       <article className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100">
-        {post.image && (
+        {post.image && showImg && (
           <img
             src={post.image}
             alt={post.title}
