@@ -10,14 +10,28 @@ export default function HomePage() {
   )
 
   return (
-    <main className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <main className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+      {/* Sidebar Clima (geral) */}
+      <aside className="lg:col-span-1 mb-8 lg:mb-0">
+        <WeatherWidget />
+      </aside>
+
+      {/* Conteúdo Principal */}
       <section className="lg:col-span-3">
+        {/* Navbar das cidades */}
         <CityNavbar />
+
+        {/* Logo centralizada */}
         <div className="flex justify-center my-6">
-          <img src="/images/logo/REDESA.png" alt="Mapa das 13 cidades" width={500} />
+          <img
+            src="/images/logo/REDESA.png"
+            alt="Mapa das 13 cidades"
+            className="w-full max-w-sm md:max-w-md lg:max-w-lg"
+          />
         </div>
 
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+        {/* Lista de matérias */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedPosts.map(post => (
             <PostCard key={post._id} post={post} showImg={false} />
           ))}

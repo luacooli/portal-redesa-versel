@@ -3,7 +3,7 @@
 import '../styles/globals.css'
 import { Header } from '../components/Header'
 import TopicFilter from '@/components/TopicFilter'
-import WeatherCard from '@/components/WeatherWidget'
+import WeatherWidget from '@/components/WeatherWidget'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
@@ -19,27 +19,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <title>Portal Rede Entre Serras e Águas</title>
         <link rel="icon" type="image/x-icon" href="/favicon.png" />
       </head>
-      <body className="bg-gray-50 text-gray-900 font-sans">
+      <body className="bg-background text-gray-900 font-sans">
         <Header />
 
-        <main className="max-w-5xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row gap-8">
-          {/* Coluna esquerda - Clima */}
-          <aside className="md:w-2/4">
-            <WeatherCard city={citySlug} />
-          </aside>
+        <main className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row gap-8">
+          {/* Sidebar - Clima (só aparece nas páginas de cidade) */}
+          {citySlug && (
+            <aside className="md:w-1/4">
+              <WeatherWidget city={citySlug.replace(/-/g, ' ')} />
+            </aside>
+          )}
 
-          <div>
-            {/* Tópicos visíveis somente nas páginas de cidade */}
+          {/* Conteúdo principal */}
+          <section className={`flex-1 ${citySlug ? '' : 'w-full'}`}>
+            {/* Filtro de tópicos - só nas rotas de cidade */}
             {citySlug && (
-              <div className="mb-8">
+              <div className="mb-6">
                 <TopicFilter citySlug={citySlug} activeTopic={topicSlug} />
               </div>
             )}
 
-            <div className="">
-              {children}
-            </div>
-          </div>
+            <div>{children}</div>
+          </section>
         </main>
       </body>
     </html>
