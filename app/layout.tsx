@@ -1,6 +1,7 @@
 'use client'
 
 import '../styles/globals.css'
+import { TopHeader } from '@/components/TopHeader'
 import { Header } from '../components/Header'
 import TopicFilter from '@/components/TopicFilter'
 import WeatherWidget from '@/components/WeatherWidget'
@@ -20,6 +21,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/x-icon" href="/favicon.png" />
       </head>
       <body className="bg-background text-gray-900 font-sans">
+        <TopHeader />
+
         <Header />
 
         <main className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row gap-8">
