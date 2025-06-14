@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
-import { topicColors } from '@/lib/constants/topicColors'
 
 type Post = {
   _id: string
@@ -12,27 +11,26 @@ type Post = {
   image?: string
   citySlug: string
   topicSlug: string
+  topic?: string
 }
 
 export default function PostCard({
   post,
-  showImg = true
+  showImg = true,
+  showTopicBadge = true
 }: {
   post: Post
   showImg?: boolean
+  showTopicBadge?: boolean
 }) {
   const formattedDate = format(new Date(post.date), "dd 'de' MMMM 'de' yyyy", {
     locale: ptBR
   })
 
-  const topicLabel = post.topicSlug.charAt(0).toUpperCase() + post.topicSlug.slice(1)
-
-  const topicColor = topicColors[post.topicSlug]
-
   return (
     <div>
       <Link href={`/cidade/${post.citySlug}/${post.topicSlug}/${post.slug}`}>
-        <article className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-neutral-200">
+        <article className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100">
           {post.image && showImg && (
             <img
               src={post.image}
@@ -42,21 +40,18 @@ export default function PostCard({
           )}
 
           <div className="p-4 space-y-2">
-            {/* Badge de tópico */}
-            {topicColor && (
-              <span
-                className={`inline-block text-xs font-medium px-2 py-1 rounded-full ${topicColor.text}`}
-                style={{ backgroundColor: topicColor.bg }}
-              >
-                {topicLabel}
-              </span>
-            )}
-
             <h2 className="text-lg font-semibold text-gray-800 line-clamp-2">
               {post.title}
             </h2>
 
             <p className="text-sm text-gray-500">{formattedDate}</p>
+
+            {/* Badge de tópico (só se showTopicBadge for true) */}
+            {showTopicBadge && post.topic && (
+              <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                {post.topic.toUpperCase()}
+              </span>
+            )}
 
             {post.summary && (
               <p className="text-sm text-gray-600 line-clamp-3">{post.summary}</p>

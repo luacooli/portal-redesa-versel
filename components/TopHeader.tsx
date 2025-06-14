@@ -15,7 +15,7 @@ export function TopHeader() {
             href="/"
             className={`transition-colors duration-200 hover:text-[color:var(--primary-color)] hover:bg-[${colors.primary}] hover:scale-105`}
           >
-            🏠 Home
+            🗺️ Cidades
           </Link>
 
           <Link

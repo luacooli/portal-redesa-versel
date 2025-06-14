@@ -1,5 +1,4 @@
 import { allPosts } from 'contentlayer/generated'
-// import TopicFilter from '@/components/TopicFilter'
 import PostCard from '@/components/PostCard'
 
 export default function CityPage({
@@ -23,11 +22,10 @@ export default function CityPage({
       <h1 className="text-2xl font-bold mb-4 capitalize">
         Esporte em {city}
       </h1>
-      {/* <TopicFilter citySlug={params.slug} activeTopic={topic} /> */}
 
       <section className="mt-6 space-y-6">
         {posts.map(post => (
-          <PostCard key={post._id} post={post} />
+          <PostCard key={post._id} post={post} showTopicBadge={false} />
         ))}
         {posts.length === 0 && (
           <p className="text-gray-500">No articles found.</p>
