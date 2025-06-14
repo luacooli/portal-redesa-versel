@@ -8,9 +8,12 @@ type WeatherData = {
   icon: string
   humidity: number
   wind: number
+  feelsLike: number
+  minTemp: number
+  maxTemp: number
 }
 
-export default function WeatherWidget({ city }: { city: string }) {
+export default function WeatherWidget({ city = 'Atibaia' }: { city?: string }) {
   const [weather, setWeather] = useState<WeatherData | null>(null)
   const [loading, setLoading] = useState(true)
   const apiKey = process.env.NEXT_PUBLIC_OPENWEATHER_KEY
@@ -28,12 +31,15 @@ export default function WeatherWidget({ city }: { city: string }) {
         const data = await res.json()
 
         if (res.ok) {
-          const weatherInfo = {
+          const weatherInfo: WeatherData = {
             temp: Math.round(data.main.temp),
             description: data.weather[0].description,
-            icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+            icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
             humidity: data.main.humidity,
-            wind: data.wind.speed
+            wind: data.wind.speed,
+            feelsLike: Math.round(data.main.feels_like),
+            minTemp: Math.round(data.main.temp_min),
+            maxTemp: Math.round(data.main.temp_max)
           }
 
           setWeather(weatherInfo)
@@ -51,22 +57,38 @@ export default function WeatherWidget({ city }: { city: string }) {
     fetchWeather()
   }, [city])
 
-  if (loading) return <p>Carregando clima...</p>
-  if (!weather) return <p>Clima não disponível</p>
+  if (loading) return <p className="text-gray-500">Carregando clima...</p>
+  if (!weather) return <p className="text-gray-500">Clima não disponível</p>
 
   return (
-    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-sm space-y-2">
-      <div className="flex items-center gap-3">
-        <img src={weather.icon} alt="Ícone do clima" className="w-10 h-10" />
+    <div className="bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-2xl p-5 shadow-md w-full max-w-sm mx-auto">
+      <div className="flex items-center gap-4">
+        <img src={weather.icon} alt="Ícone do clima" className="w-16 h-16" />
+
         <div>
-          <p className="text-xl font-semibold">{weather.temp}°C</p>
-          <p className="text-sm capitalize text-gray-600">{weather.description}</p>
+          <p className="text-3xl font-bold text-blue-700">{weather.temp}°C</p>
+          <p className="text-sm text-gray-600 capitalize">{weather.description}</p>
+          <p className="text-xs text-gray-500">Sensação: {weather.feelsLike}°C</p>
         </div>
       </div>
 
-      <div className="text-sm text-gray-700 space-y-1 mt-2">
-        <p><strong>Umidade:</strong> {weather.humidity}%</p>
-        <p><strong>Vento:</strong> {weather.wind} km/h</p>
+      <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-gray-600">
+        <div className="flex flex-col">
+          <span className="font-semibold">Mínima</span>
+          <span>{weather.minTemp}°C</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="font-semibold">Máxima</span>
+          <span>{weather.maxTemp}°C</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="font-semibold">Umidade</span>
+          <span>{weather.humidity}%</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="font-semibold">Vento</span>
+          <span>{weather.wind} km/h</span>
+        </div>
       </div>
     </div>
   )

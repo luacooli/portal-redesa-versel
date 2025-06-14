@@ -11,11 +11,6 @@ export default function HomePage() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
-      {/* <aside className="lg:col-span-1">
-        <h2 className="font-semibold text-lg mb-4">Previsão do Tempo</h2>
-        <WeatherWidget city={'Atibaia'} />
-      </aside> */}
-
       <section className="lg:col-span-3">
         <CityNavbar />
         <div className="flex justify-center my-6">

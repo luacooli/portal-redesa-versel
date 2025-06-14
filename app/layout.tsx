@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <main className="max-w-5xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row gap-8">
           {/* Coluna esquerda - Clima */}
-          <aside className="md:w-1/4">
+          <aside className="md:w-2/4">
             <WeatherCard city={citySlug} />
           </aside>
 
