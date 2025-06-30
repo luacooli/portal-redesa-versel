@@ -24,7 +24,7 @@ export default function HomePage() {
         {/* Logo centralizada */}
         <div className="flex justify-center my-6">
           <img
-            src="/images/logo/REDESA.png"
+            src="/images/REDESA.png"
             alt="Mapa das 13 cidades"
             className="w-full max-w-sm md:max-w-md lg:max-w-lg"
           />

@@ -1,7 +1,21 @@
 export const topics = [
+  { label: 'Agronegócios', slug: 'agronegocios' },
+  { label: 'Ciência e Tecnologia', slug: 'ciencia-tecnologia' },
   { label: 'Cultura', slug: 'cultura' },
+  { label: 'Direitos e Deveres', slug: 'direitos-deveres' },
+  { label: 'Economia', slug: 'economia' },
+  { label: 'Educação', slug: 'educacao' },
+  { label: 'Eventos', slug: 'eventos' },
   { label: 'Esporte', slug: 'esporte' },
-  { label: 'Entretenimento', slug: 'entretenimento' },
   { label: 'Gastronomia', slug: 'gastronomia' },
-  { label: 'Saúde', slug: 'saude' }
+  { label: 'Imóveis', slug: 'imoveis' },
+  { label: 'Meio Ambiente', slug: 'meio-ambiente' },
+  { label: 'Moda', slug: 'moda' },
+  { label: 'Música', slug: 'musica' },
+  { label: 'Nutrição', slug: 'nutricao' },
+  { label: 'Policial', slug: 'policial' },
+  { label: 'Saúde', slug: 'saude' },
+  { label: 'The Best', slug: 'the-best' },
+  { label: 'Turismo', slug: 'turismo' },
+  { label: 'Variedades', slug: 'variedades' },
 ]
