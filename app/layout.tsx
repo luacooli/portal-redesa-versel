@@ -1,12 +1,13 @@
 'use client'
 
+import React from 'react'
 import '../styles/globals.css'
-import { TopHeader } from '@/components/TopHeader'
+import { Footer } from '@/components/Footer'
 import { Header } from '../components/Header'
+import { TopHeader } from '@/components/TopHeader'
 import TopicFilter from '@/components/TopicFilter'
 import WeatherWidget from '@/components/WeatherWidget'
 import { usePathname } from 'next/navigation'
-import React from 'react'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -43,8 +44,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             )}
 
             <div>{children}</div>
+
+            {/* <Footer /> */}
+
           </section>
         </main>
+
+        <Footer />
       </body>
     </html>
   )
