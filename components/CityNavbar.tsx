@@ -1,5 +1,6 @@
-import { cities } from '@/lib/constants/cities'
 import Link from 'next/link'
+import { FaMountain } from 'react-icons/fa'
+import { cities } from '@/lib/constants/cities'
 import { colors } from '@/lib/constants/colors'
 
 export default function CityNavbar() {
@@ -11,13 +12,17 @@ export default function CityNavbar() {
         <Link
           key={city.slug}
           href={`/cidade/${city.slug}`}
-          className={`px-4 py-2 text-sm rounded-full border transition-all duration-200
-            text-gray-700 hover:text-[#0077A3]
-            border-[${colors.secondary}]
-            hover:bg-[${colors.secondary}]
-          `}
+          className="flex items-center p-2 border rounded-md border-[#004F6077] shadow-sm hover:shadow-md transition-shadow duration-200"
         >
-          {city.name}
+          {/* <FaMountain size={20} color={colors.primary} className="mr-4" /> */}
+          <div>
+            <span className="text-sm font-semibold text-[#004F60]">
+              {city.name}
+            </span>
+            {/* <p className="text-sm text-gray-500">
+              Explore {city.name}
+            </p> */}
+          </div>
         </Link>
       ))}
     </nav>
