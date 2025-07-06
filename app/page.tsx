@@ -3,6 +3,7 @@ import { allPosts } from 'contentlayer/generated'
 import CityNavbar from '@/components/CityNavbar'
 import PostCard from '@/components/PostCard'
 import WeatherWidget from '@/components/WeatherWidget'
+import { RadioSection } from '@/components/RadioSection'
 
 export default function HomePage() {
   const sortedPosts = allPosts.sort(
@@ -10,7 +11,7 @@ export default function HomePage() {
   )
 
   return (
-    <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8">
       {/* Sidebar - Clima (geral) */}
       <aside className="lg:col-span-1 mb-8 lg:mb-0">
         <WeatherWidget />
@@ -36,7 +37,11 @@ export default function HomePage() {
             <PostCard key={post._id} post={post} showImg={false} />
           ))}
         </section>
+
+        {/* Seção da Rádio */}
+        <RadioSection />
       </section>
+      futura propaganda aqui!
     </main>
   )
 }
