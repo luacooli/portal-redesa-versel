@@ -5,6 +5,7 @@ import PostCard from '@/components/PostCard'
 import WeatherWidget from '@/components/WeatherWidget'
 import { RadioSection } from '@/components/RadioSection'
 import { Ad } from '@/components/Ad'
+import { CTA } from '@/components/CTA'
 
 export default function HomePage() {
   const sortedPosts = allPosts.sort(
@@ -38,6 +39,9 @@ export default function HomePage() {
             <PostCard key={post._id} post={post} showImg={false} />
           ))}
         </section>
+
+        {/* Nova seção de interação */}
+        <CTA />
 
         {/* Seção da Rádio */}
         <RadioSection />
