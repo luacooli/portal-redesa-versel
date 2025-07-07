@@ -115,7 +115,7 @@ export default function WeatherWidget({ city }: { city?: string }) {
   return (
     <div
       onClick={handleNextCity}
-      className="cursor-pointer rounded-xl shadow-sm p-4 space-y-3 border transition-all duration-300 hover:shadow-md hover:scale-[1.01]"
+      className="cursor-pointer rounded-xl shadow-sm p-4 md:space-y-3 border transition-all duration-300 hover:shadow-md hover:scale-[1.01]"
       style={{
         backgroundColor: colors.neutralLight,
         borderColor: colors.primary
@@ -123,14 +123,14 @@ export default function WeatherWidget({ city }: { city?: string }) {
       title="Clique para ver o clima da próxima cidade"
     >
       <h2
-        className="text-lg font-semibold tracking-wide uppercase"
+        className="text-lg text-center md:text-start font-semibold tracking-wide uppercase"
         style={{ color: colors.primary }}
       >
         {displayedCity}
       </h2>
 
       {/* Clima Atual */}
-      <div className="flex items-center gap-4">
+      <div className="flex justify-center items-center gap-4">
         <img src={weather.icon} alt="Ícone do clima" className="w-12 h-12" />
         <div>
           <p
@@ -143,7 +143,7 @@ export default function WeatherWidget({ city }: { city?: string }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 text-xs text-gray-700">
+      <div className="hidden md:grid grid-cols-2 gap-2 text-xs text-gray-700">
         <div>
           <span className="font-medium">Mín:</span> {weather.minTemp}°C
         </div>
@@ -158,7 +158,7 @@ export default function WeatherWidget({ city }: { city?: string }) {
         </div>
       </div>
 
-      <div className="flex justify-center mt-2">
+      <div className="hidden md:flex justify-center mt-2">
         <span
           className="text-xs font-semibold uppercase px-3 py-1 text-highlight border rounded border-highlight"
           style={{ color: colors.highlight, borderColor: colors.highlight }}
@@ -169,7 +169,7 @@ export default function WeatherWidget({ city }: { city?: string }) {
 
       {/* Forecast dos próximos 2 dias */}
       {forecast.length > 0 && (
-        <div className="mt-3 space-y-1 text-xs text-gray-700">
+        <div className="hidden md:flex md:flex-col mt-3 space-y-1 text-xs text-gray-700">
           <p className="font-semibold" style={{ color: colors.primary }}>
             Próximos dias:
           </p>

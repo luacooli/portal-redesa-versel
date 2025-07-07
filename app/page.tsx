@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8">
       {/* Sidebar - Clima (geral) */}
-      <aside className="lg:col-span-1 mb-8 lg:mb-0">
+      <aside className="max-w-fit mx-auto lg:col-span-1 md:mb-8 lg:mb-0">
         <WeatherWidget />
       </aside>
 
@@ -25,7 +25,7 @@ export default function HomePage() {
         <CityNavbar />
 
         {/* Logo centralizada */}
-        <div className="flex justify-center my-6">
+        <div className="hidden md:flex justify-center my-6">
           <img
             src="/images/REDESA.png"
             alt="Mapa das 13 cidades"
@@ -34,7 +34,7 @@ export default function HomePage() {
         </div>
 
         {/* Lista de matérias */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="grid grid-cols-1 mt-4 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedPosts.map(post => (
             <PostCard key={post._id} post={post} showImg={false} />
           ))}
