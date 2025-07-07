@@ -8,6 +8,7 @@ import { TopHeader } from '@/components/TopHeader'
 import TopicFilter from '@/components/TopicFilter'
 import WeatherWidget from '@/components/WeatherWidget'
 import { usePathname } from 'next/navigation'
+import { Ad } from '@/components/Ad'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -26,7 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Header />
 
-        <main className="max-w-6xl mx-auto px-4 md:px-6 pb-6 flex flex-col md:flex-row gap-8">
+        <main className="max-w-6xl mx-auto px-4 pb-6 flex flex-col md:flex-row gap-8">
+        {/* <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-none gap-8"> */}
           {/* Sidebar - Clima (só aparece nas páginas de cidade) */}
           {citySlug && (
             <aside className="md:w-1/4">
@@ -44,10 +46,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             )}
 
             <div>{children}</div>
-
-            {/* <Footer /> */}
-
           </section>
+
+          <Ad
+            size="medium"
+            title="Voe de asadeltas"
+            imageSrc="/images/ads/pedra-grande.jpg"
+            description="Ad - layout geral"
+            buttonText="Saiba mais"
+            link="https://www.atibaiaturismo.com.br/"
+          />
         </main>
 
         <Footer />
