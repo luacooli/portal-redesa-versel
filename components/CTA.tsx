@@ -13,16 +13,16 @@ export function CTA() {
         <div className="absolute left-0 top-0 h-full w-2" style={{ backgroundColor: colors.primary }} />
         <div className="absolute left-2 top-0 h-full w-2" style={{ backgroundColor: colors.secondary }} />
 
-        <div className="ml-8 flex flex-col md:flex-row items-center justify-between w-full p-8">
+        <div className="ml-4 md:ml-8 flex flex-col md:flex-row items-center justify-between w-full p-4 sm:p-8">
           {/* Texto */}
           <div className="max-w-xl text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: colors.primary }}>
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.primary }}>
               Faça parte das atualizações da AtibaiaTV
             </h2>
-            <p className="text-lg md:text-xl mb-4 text-gray-700">
+            <p className="hidden md:flex text-sm md:text-base mb-4 text-gray-700">
               Aqui você tem espaço aberto. Tem algo acontecendo perto de você?
             </p>
-            <p className="mb-6 text-gray-600">
+            <p className="text-sm mb-6 text-gray-600">
               Grave um vídeo ou tire fotos do ocorrido e envie para a gente no WhatsApp:
             </p>
 
