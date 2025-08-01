@@ -1,5 +1,10 @@
 import { allPosts } from 'contentlayer/generated'
 import PostCard from '@/components/PostCard'
+// import { cities } from '@/lib/constants/cities'  // array de { slug, name }
+
+// export async function generateStaticParams() {
+//   return cities.map(city => ({ slug: city.slug }))
+// }
 
 export default async function CityPage({
   params,
@@ -10,6 +15,7 @@ export default async function CityPage({
 }) {
   const city = params.slug.replace(/-/g, ' ')
   const topic = searchParams.topic
+
 
   const posts = allPosts
     .filter(post => post.citySlug === params.slug)

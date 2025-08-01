@@ -1,5 +1,10 @@
 import { allPosts } from 'contentlayer/generated'
 import PostCard from '@/components/PostCard'
+// import { cities } from '@/lib/constants/cities'  // array de { slug, name }
+
+// export async function generateStaticParams() {
+//   return cities.map(city => ({ slug: city.slug }))
+// }
 
 export default function CityPage({
   params,
