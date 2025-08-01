@@ -26,7 +26,7 @@ export function RadioSection() {
 
         {/* Botão */}
         <Link
-          href="https://site-da-radio.com"
+          href="https://www.radioesa.com.br/"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 md:mt-0"
