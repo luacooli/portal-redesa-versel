@@ -26,7 +26,7 @@ export function TopHeader() {
           </Link>
 
           <a
-            href="https://site-da-radio.com"
+            href="https://www.radioesa.com.br"
             target="_blank"
             rel="noopener noreferrer"
             className={`transition-colors duration-200 hover:text-[${colors.highlight}] hover:scale-105`}
